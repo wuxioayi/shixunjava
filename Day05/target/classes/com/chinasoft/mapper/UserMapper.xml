@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasoft.mapper.UserMapper">
+  <insert id="addUserNoPar">
+  		insert into  user(username,password) values('ggjj','123456');
+  </insert>
+  <!-- 有参数添加功能 -->
+  <insert id = "addUserByParameter" parameterType = "com.chinasoft.pojo.User">
+    insert into user (id,username,password,phone,address,email) values(#{id},#{username},#{password},#{phone},#{address},#{email});
+  </insert>
+  
+  
+  <!-- 有参数查询功能 -->
+  <select id="selectOneUserByPar" resultType="com.chinasoft.pojo.User" parameterType="int">
+  select * from user where id=#{id}
+  </select>
+  
+  <!-- 登录功能 -->
+  <select id="selectLogin" resultType="com.chinasoft.pojo.User" parameterType="user">
+  select * from user where username=#{username} and password=#{password}
+  </select>
+  <!-- 根据想要的字段排序 -->
+  <select id="selectOrderByPar" parameterType="String" resultType="user">
+   	select * from user order by ${id}
+  </select>
+  
+  
+  
+  
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasoft.mapper.GenderMapper">
+  
+  <select id="selectGenderWith" parameterType="int" resultMap="allGender">
+  	select * from gender,user where gender.id=user.c_id and gender.id=#{id}
+  </select>
+  <resultMap type="gender" id="allGender">
+  	<id column="id" property="id" />
+  	<id column="c_name" property="name" />
+  	<id column="c_teacher" property="teacher" />
+  	
+  	<collection  property="list" ofType="user">
+  		<id column="id" property="id"/>
+	  	<result column="c_name" property="name" />
+	  	<result column="c_teacher" property="teacher" />
+  	</collection>
+  </resultMap>
+  
+
+</mapper>
